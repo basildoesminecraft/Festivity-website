@@ -1,0 +1,54 @@
+>>REALS: Festivity Images/Reals/
+
+>>CATEGORY: Fast Foods
+>>PATH: Festivity Images/Fast Foods/
+>>FIT: cover
+Cheese Burger.png|golden_carrot.png
+Hot Dog.png|golden_carrot.png
+Cheese Pizza.png|golden_carrot.png
+Pepperoni Pizza.png|golden_carrot.png
+Fries.png|golden_carrot.png
+
+>>CATEGORY: Christmas
+>>PATH: Festivity Images/Christmas/
+>>FIT: contain
+Christmas Hat.png|carved_pumpkin.png
+Gift.png|green_bundle.png
+Gift1.png|red_bundle.png|Gift
+Gift2.png|yellow_bundle.png|Gift
+
+>>CATEGORY: Candy
+>>PATH: Festivity Images/Candy/
+>>FIT: contain
+Candycane.png|sweet_berries.png
+Lollipop.png|sweet_berries.png
+
+>>CATEGORY: Drinks
+>>PATH: Festivity Images/Drinks/
+>>FIT: contain
+Eggnog.png|milk_bucket.png
+Hot Chocolate.png|milk_bucket.png
+Coffee Mug.png|milk_bucket.png
+Empty Coffee Mug.png|bucket.png
+Coffee Maker.png|carved_pumpkin.png
+Tea Cup.png|milk_bucket.png
+Empty Tea Cup.png|bucket.png
+Champagne.png|milk_bucket.png
+Champagne Glass.png|bucket.png
+Champagne In Glass.png|milk_bucket.png
+
+>>CATEGORY: Fruits
+>>PATH: Festivity Images/Fruits/
+>>FIT: cover
+Mandarin.png|apple.png
+Orange.png|apple.png
+Peach.png|apple.png
+Tomato.png|beetroot.png
+Green Apple.png|apple.png
+Basket.png|bundle.png
+
+>>CATEGORY: Others
+>>PATH: Festivity Images/Others/
+>>FIT: cover
+Cabbage.png|potato.png
+Cheese.png|golden_carrot.png

@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=1.0, user-scalable=yes">
+    <title>Festivity Gallery | Minecraft Resource Pack</title>
+    <!-- Minecraft CSS Framework (Bedrock UI) -->
+    <link rel="stylesheet" href="dist/minecraft-css-framework-v-1.0.0.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+        }
+
+
+        html {
+            overflow-y: scroll;
+        }
+
+        /* Top Bezel Buttons */
+        .top-bezel-buttons {
+            position: absolute;
+            top: -50px;
+            left: 50;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 20;
+        }
+        
+        .donate-btn-bezel {
+            background: #e25c18;
+            border: 2px solid #b55526;
+            border-radius: 8px;
+            box-shadow: 
+                inset 0 -4px 0 #89502d,
+                inset 0 1px 0 #fcae6f,
+                0 2px 4px rgba(0,0,0,0.3);
+            padding: 0.7rem 2rem;
+            color: #222222;
+            text-decoration: none;
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            font-weight: bold;
+            transition: 0.05s linear;
+        }
+        
+        .donate-btn-bezel:active {
+            transform: translateY(2px);
+            box-shadow: 
+                inset 0 -2px 0 #686868,
+                inset 0 1px 0 #f0f0f0,
+                0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .commission-btn-bezel {
+            background: #e25c18;
+            border: 2px solid #b55526;
+            border-radius: 8px;
+            box-shadow: 
+                inset 0 -4px 0 #89502d,
+                inset 0 1px 0 #fcae6f,
+                0 2px 4px rgba(0,0,0,0.3);
+            padding: 0.7rem 2rem;
+            color: #222222;
+            text-decoration: none;
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            font-weight: bold;
+            transition: 0.05s linear;
+        }
+        
+        .commission-btn-bezel:active {
+            transform: translateY(2px);
+            box-shadow: 
+                inset 0 -2px 0 #686868,
+                inset 0 1px 0 #f0f0f0,
+                0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .background-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        body {
+            background: transparent !important;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+        
+
+        .tv-box {
+            background: #356645;
+            border: 24px solid #9b3e25;
+            border-top: 120px solid #9b3e25;
+            border-radius: 4px;
+            box-shadow: 
+                inset 0 0 30px rgba(0,0,0,0.5),
+                0 0 0 6px #87360a,
+                0 0 0 25px #6d1803;
+            padding: 1.5rem;
+            position: relative;
+            margin-top: 36px;
+        }
+        
+        /* Extended top bezel */
+        .tv-box .top-bezel-extend {
+            position: absolute;
+            top: -72px;
+            left: -24px;
+            right: -24px;
+            height: 72px;
+            background: #9a9a9a;
+            border-radius: 45px 45px 0 0;
+            z-index: -1;
+        }
+        
+
+        .tv-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.2) 0px,
+                rgba(0,0,0,0.2) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 5;
+            border-radius: 8px;
+        }
+        
+
+        .tv-box::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                circle at 30% 40%,
+                rgba(0, 80, 0, 0.12) 0%,
+                rgba(0, 40, 0, 0.06) 60%,
+                rgba(0, 20, 0, 0.03) 100%
+            );
+            pointer-events: none;
+            z-index: 6;
+            border-radius: 8px;
+            animation: crtFlicker 0.4s infinite;
+        }
+        
+
+        @keyframes crtFlicker {
+            0% { opacity: 0.97; }
+            25% { opacity: 1; }
+            50% { opacity: 0.98; }
+            75% { opacity: 1; }
+            100% { opacity: 0.97; }
+        }
+        
+
+        .tv-box .screen-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                circle at 25% 20%,
+                rgba(255, 255, 200, 0.06) 0%,
+                rgba(255, 255, 200, 0.02) 30%,
+                transparent 70%
+            );
+            pointer-events: none;
+            z-index: 7;
+            border-radius: 8px;
+        }
+        
+
+        .tv-box .tv-brand {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            color: #6a6a6a;
+            background: #1a1a1a;
+            padding: 2px 12px;
+            border-radius: 10px;
+            letter-spacing: 2px;
+            z-index: 10;
+        }
+        
+
+        .tv-box .power-led {
+            position: absolute;
+            bottom: -12px;
+            left: 20px;
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #00ff00;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+        
+
+        .tv-box .channel-knob {
+            position: absolute;
+            bottom: -18px;
+            right: 60px;
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle, #555 20%, #2a2a2a 80%);
+            border-radius: 50%;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 3px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        
+        .tv-box .channel-knob::before {
+            content: "CH";
+            position: absolute;
+            top: 6px;
+            left: 5px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 6px;
+            color: #aaa;
+        }
+        
+
+        .tv-box .volume-knob {
+            position: absolute;
+            bottom: -18px;
+            right: 20px;
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle, #555 20%, #2a2a2a 80%);
+            border-radius: 50%;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 3px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        
+        .tv-box .volume-knob::before {
+            content: "VOL";
+            position: absolute;
+            top: 5px;
+            left: 3px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 5px;
+            color: #aaa;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .minecraft-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+
+        .two-columns {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+
+        .billboard {
+            flex: 0 0 280px;
+            background: #422144;
+            border: 6px solid #775c73;
+            box-shadow: inset 0 0 0 2px #9e7998, 0 6px 0 #5e455a;
+            padding: 1rem;
+            position: sticky;
+            top: 20px;
+        }
+
+        .billboard-title {
+            font-size: 0.9rem;
+            text-align: center;
+            color: #e0e0e0;
+            text-shadow: 2px 2px 0 #1e1e1f;
+            background: #356645;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 2px solid #9a9a9a;
+            box-shadow: inset 1px 1px 0 #8a8a7a, inset -1px -1px 0 #5a5a4a;
+        }
+        
+
+        .text-xs { font-size: 0.4rem; }
+        .text-sm { font-size: 0.55rem; }
+        .text-md { font-size: 0.7rem; }
+        .text-lg { font-size: 0.85rem; }
+        .text-xl { font-size: 1rem; }
+
+  
+        .billboard-link {
+            color: #77aaff;
+            text-decoration: none;
+            border-bottom: 1px dotted #77aaff;
+        }
+        .billboard-link:hover {
+            color: #ffd966;
+            border-bottom-color: #ffd966;
+        }
+
+        .billboard-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header {
+            font-size: 0.7rem;
+            color: #ffd966;
+            border-bottom: 2px solid #5a5b5c;
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .billboard-entry {
+            font-size: 0.55rem;
+            color: #f0f0f0;
+            background: #1e1e1f;
+            margin-bottom: 0.5rem;
+            padding: 0.4rem;
+            border: 1px solid #5a5b5c;
+            word-break: break-word;
+        }
+
+        .entry-name {
+            color: #ffb347;
+        }
+
+        .entry-amount {
+            color: #7aff87;
+        }
+
+        .entry-message {
+            font-size: 0.5rem;
+            color: #aaaaaa;
+            margin-top: 0.2rem;
+        }
+
+        .billboard-loading, .billboard-error {
+            font-size: 0.55rem;
+            text-align: center;
+            padding: 1rem;
+            color: #ffb7b7;
+        }
+
+
+        .gallery-area {
+            flex: 1;
+            min-width: 0;
+        }
+
+   
+        .bedrock-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #2d2d2e;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 0 0 2px #5a5b5c, 0 6px 0 #1e1e1f;
+            padding: 1rem 2rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+        .logo-placeholder {
+            width: 56px;
+            height: 56px;
+            background: #8b8b8b;
+            border: 2px solid #0c0c0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #2b2b2b;
+        }
+
+        .logo-text {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #e0e0e0;
+            text-shadow: 2px 2px 0 #1e1e1f;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .commission-btn {
+            background: #7345e5;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 -4px 0 #4a1cac, inset 2px 2px 0 #a264f2, inset -2px -6px 0 #5d2cc6;
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .commission-btn:active {
+            transform: translateY(2px);
+            box-shadow: inset 0 0 0 #4a1cac, inset 2px 2px 0 #a264f2, inset -2px -2px 0 #5d2cc6;
+        }
+
+        .donate-btn {
+            background: #c93232;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 -4px 0 #831c1c, inset 2px 2px 0 #e05a5a, inset -2px -6px 0 #a12828;
+            padding: 0.8rem 1.8rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .donate-btn:active {
+            transform: translateY(2px);
+            box-shadow: inset 0 0 0 #831c1c, inset 2px 2px 0 #e05a5a, inset -2px -2px 0 #a12828;
+        }
+        
+        .commission-bar {
+            text-align: center;
+            margin: 1rem auto 2rem auto;
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2.5rem;
+            padding: 1.2rem 0;
+            border-top: 3px solid #1e1e1f;
+            border-bottom: 3px solid #1e1e1f;
+            background: #3a3a3c;
+        }
+
+        .cat-btn {
+            background: #c6c6c6;
+            border: 2px solid #131313;
+            box-shadow: inset 1.5px 1.5px 0 #f7f7f7, inset -1.5px -1.5px 0 #656465;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.7rem;
+            color: #2d2d2d;
+            cursor: pointer;
+        }
+
+        .cat-btn.active {
+            background: #218306;
+            color: white;
+            box-shadow: inset 1.5px 1.5px 0 #17cd07, inset -1.5px -1.5px 0 #004e00;
+            border-color: white;
+        }
+
+        .cat-btn:hover {
+            background: #8b8b8b;
+            color: white;
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 2rem 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .item-card {
+            background: #313233;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 0 0 2px #5a5b5c;
+            padding: 12px 8px 10px 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .item-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border: 2px solid #0f0f0f;
+            background: #1e1e1f;
+            display: block;
+        }
+
+        .overlay-img {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border: 2px solid #0f0f0f;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .item-text {
+            margin-top: 12px;
+            font-size: 0.55rem;
+            color: #f0f0f0;
+            background: #1e1e1f;
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid #5a5b5c;
+        }
+
+        .no-match {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 2rem;
+            background: #2d2d2e;
+            border: 3px solid #1e1e1f;
+            color: #ffb7b7;
+            font-size: 0.8rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .error {
+            text-align: center;
+            padding: 3rem;
+            color: #ffb7b7;
+            font-size: 0.8rem;
+            background: #2d2d2e;
+            border: 3px solid #ffb7b7;
+        }
+
+        @media (max-width: 900px) {
+            .two-columns {
+                flex-direction: column;
+            }
+            .billboard {
+                flex: 1;
+                width: 100%;
+                position: static;
+                margin-bottom: 1rem;
+            }
+            .billboard-entry {
+                font-size: 0.65rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .bedrock-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .image-grid {
+                gap: 1rem;
+            }
+            .commission-btn {
+                font-size: 0.7rem;
+                padding: 0.8rem 1rem;
+            }
+            .donate-btn {
+                font-size: 0.6rem;
+                padding: 0.6rem 1rem;
+            }
+            .overlay-img {
+                width: 35px;
+                height: 35px;
+            }
+        }
+        
+ 
+        .color-gold { color: #ffd966; }
+        .color-red { color: #ff7777; }
+        .color-green { color: #7aff87; }
+        .color-blue { color: #77aaff; }
+        .color-pink { color: #ff99cc; }
+        .color-white { color: #ffffff; }
+        .color-gray { color: #aaaaaa; }
+        
+
+        .rainbow {
+            background: linear-gradient(
+                to right,
+                #ff0000,
+                #ff7f00,
+                #ffff00,
+                #00ff00,
+                #0000ff,
+                #4b0082,
+                #9400d3
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 2s linear infinite;
+            background-size: 200% auto;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+
+        .glow {
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+        }
+        
+        body {
+            cursor: url('cursor.png') 10 16, auto;
+        }
+
+
+        a, button, .cat-btn, .donate-btn, .commission-btn {
+            cursor: url('cursor-pointer.png') 16 16, pointer;
+        }
+        body {
+            cursor: url('cursor.png') 10 16, auto;
+        }
+
+        a, button, .cat-btn, .donate-btn, .commission-btn {
+            cursor: url('cursor-pointer.png') 16 16, pointer;
+        }
+
+
+        .donate-btn-bezel, .commission-btn-bezel {
+            cursor: pointer;
+        }
+
+
+        .donate-btn-bezel, .commission-btn-bezel {
+            cursor: url('cursor_yesplease.gif') 16 16, pointer;
+        }
+
+        .donate-btn-bezel, .commission-btn-bezel {
+            cursor: pointer;
+        }
+        
+
+        .site-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            border-top: 2px solid #3a3a3a;
+            font-size: 0.55rem;
+            color: #aaaaaa;
+        }
+        
+        .footer-link {
+            color: #77aaff;
+            text-decoration: none;
+            cursor: pointer;
+            border-bottom: 1px dotted #77aaff;
+        }
+        
+        .footer-link:hover {
+            color: #ffd966;
+            border-bottom-color: #ffd966;
+        }
+        
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: #2d2d2e;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 0 0 2px #5a5b5c, 0 6px 0 #1e1e1f;
+            padding: 1.5rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal-content h3 {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #ffd966;
+        }
+        
+        .modal-content ul {
+            list-style: none;
+            text-align: left;
+            margin: 1rem 0;
+        }
+        
+        .modal-content li {
+            margin: 0.5rem 0;
+            font-size: 0.55rem;
+        }
+        
+        .modal-content a {
+            color: #77aaff;
+            text-decoration: none;
+        }
+        
+        .modal-content a:hover {
+            color: #ffd966;
+        }
+        
+        .close-modal {
+            background: #c93232;
+            border: 2px solid #1e1e1f;
+            padding: 0.5rem 1rem;
+            color: white;
+            cursor: pointer;
+            font-size: 0.55rem;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+        
+        .close-modal:hover {
+            background: #a12828;
+        }
+    </style>
+</head>
+<body>
+<img src="background-image.png" class="background-fixed">
+<div class="minecraft-container">
+
+    <div class="two-columns">
+        
+
+        <div class="billboard" id="billboard">
+            <div class="billboard-title">★ SUPPORTERS ★</div>
+            <div style="text-align: center; font-size: 0.67rem; color: #aaaaaa; margin-bottom: 10px;">Updated by hand every week</div>
+            <div id="billboardContent">
+                <div class="billboard-loading">LOADING...</div>
+            </div>
+        </div>
+
+
+        <div class="gallery-area">
+            <div class="tv-box">
+                <div class="top-bezel-extend"></div>
+                <div class="screen-glare"></div>
+            
+ 
+                <div class="top-bezel-buttons">
+                    <a href="https://ko-fi.com/basilkofi" target="_blank" class="donate-btn-bezel" id="donateBtn">SUPPORT / DONATE</a>
+                    <a href="https://ko-fi.com/basilkofi/commissions" target="_blank" class="commission-btn-bezel" id="commissionBtn">+ COMMISSION FOR THIS RESOURCE PACK</a>
+                </div>
+                
+
+                <div class="bedrock-header">
+                    <div class="logo-area">
+                        <img src="Festivity.png" class="logo-placeholder" style="width: 75px; height: 75px; object-fit: contain;">
+                        <div class="logo-text">FESTIVITY GALLERY</div>
+                    </div>
+                </div>
+
+
+                <div class="categories" id="categoryFilter"></div>
+
+
+                <div id="galleryGrid" class="image-grid">
+                    <div class="loading">LOADING GALLERY...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ========== GALLERY (from gallery.txt) ==========
+    let galleryItems = [];
+    let currentCategory = "all";
+    let categoriesOrder = [];
+
+    async function loadGallery() {
+        try {
+            const response = await fetch('gallery.txt');
+            if (!response.ok) {
+                throw new Error(`Failed to load gallery.txt: ${response.status}`);
+            }
+            const text = await response.text();
+            parseGalleryText(text);
+        } catch (error) {
+            console.error('Error loading gallery:', error);
+            document.getElementById('galleryGrid').innerHTML = `<div class="error">ERROR: Could not load gallery.txt<br><br>Make sure the file exists in the same folder as this HTML file.</div>`;
+            document.getElementById('categoryFilter').innerHTML = `<div class="error">Failed to load categories</div>`;
+        }
+    }
+
+    function parseGalleryText(text) {
+        const lines = text.split(/\r?\n/);
+        
+        let realsPath = "";
+        let currentCategoryName = "";
+        let currentCategoryPath = "";
+        let currentFit = "cover";
+        
+        galleryItems = [];
+        categoriesOrder = [];
+        
+        for (let line of lines) {
+            line = line.trim();
+            if (line === "") continue;
+            
+            if (line.startsWith(">>REALS:")) {
+                realsPath = line.substring(8).trim();
+                continue;
+            }
+            
+            if (line.startsWith(">>CATEGORY:")) {
+                currentCategoryName = line.substring(11).trim();
+                categoriesOrder.push(currentCategoryName);
+                continue;
+            }
+            
+            if (line.startsWith(">>PATH:")) {
+                currentCategoryPath = line.substring(7).trim();
+                continue;
+            }
+            
+            if (line.startsWith(">>FIT:")) {
+                currentFit = line.substring(6).trim().toLowerCase();
+                continue;
+            }
+            
+            if (line.includes("|") && currentCategoryName && currentCategoryPath) {
+                const parts = line.split("|");
+                const mainImageFile = parts[0].trim();
+                const overlayImageFile = parts[1].trim();
+                let caption = parts[2] ? parts[2].trim() : mainImageFile.replace(/\.png$/i, "").replace(/\.jpg$/i, "").replace(/\.jpeg$/i, "");
+                
+                const mainImg = currentCategoryPath + encodeURIComponent(mainImageFile).replace(/%20/g, "%20");
+                const overlayImg = realsPath + encodeURIComponent(overlayImageFile).replace(/%20/g, "%20");
+                
+                galleryItems.push({
+                    mainImg: mainImg,
+                    caption: caption,
+                    category: currentCategoryName,
+                    fit: currentFit,
+                    overlayImg: overlayImg
+                });
+            }
+        }
+        
+        if (galleryItems.length === 0) {
+            document.getElementById('galleryGrid').innerHTML = `<div class="error">ERROR: No items found in gallery.txt<br><br>Check the file format.</div>`;
+            document.getElementById('categoryFilter').innerHTML = `<div class="error">No categories loaded</div>`;
+            return;
+        }
+        
+        buildCategoryButtons();
+        renderGallery();
+    }
+    
+    function buildCategoryButtons() {
+        const categoryContainer = document.getElementById('categoryFilter');
+        
+        const categoryCounts = {};
+        for (let item of galleryItems) {
+            categoryCounts[item.category] = (categoryCounts[item.category] || 0) + 1;
+        }
+        
+        let html = `<button class="cat-btn active" data-cat="all">ALL (${galleryItems.length})</button>`;
+        
+        for (let catName of categoriesOrder) {
+            const count = categoryCounts[catName] || 0;
+            html += `<button class="cat-btn" data-cat="${catName}">${catName.toUpperCase()} (${count})</button>`;
+        }
+        
+        categoryContainer.innerHTML = html;
+        
+        const buttons = document.querySelectorAll('.cat-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.getAttribute('data-cat');
+                renderGallery();
+            });
+        });
+    }
+    
+    function renderGallery() {
+        const gridContainer = document.getElementById('galleryGrid');
+        
+        const filteredItems = currentCategory === "all" 
+            ? galleryItems 
+            : galleryItems.filter(item => item.category === currentCategory);
+        
+        if (filteredItems.length === 0) {
+            gridContainer.innerHTML = `<div class="no-match">NO ITEMS IN THIS CATEGORY</div>`;
+            return;
+        }
+        
+        let html = '';
+        for (let item of filteredItems) {
+            const fitStyle = item.fit === "contain" ? "object-fit: contain;" : "object-fit: cover;";
+            html += `
+                <div class="item-card">
+                    <div class="image-wrapper">
+                        <img class="item-img" src="${item.mainImg}" alt="${item.caption}" loading="lazy" style="${fitStyle} background: #1e1e1f;" onerror="this.src='https://via.placeholder.com/150/313233/ffffff?text=NO+IMG'">
+                        <img class="overlay-img" src="${item.overlayImg}" alt="real item" onerror="this.style.display='none'">
+                    </div>
+                    <div class="item-text">${item.caption}</div>
+                </div>
+            `;
+        }
+        gridContainer.innerHTML = html;
+    }
+
+    // ========== BILLBOARD (from billboard.txt) ==========
+    function applyColorTags(text) {
+
+        while (text.includes('[link=')) {
+            let start = text.indexOf('[link=');
+            let end = text.indexOf('[/link]', start);
+            if (end === -1) break;
+            let linkPart = text.substring(start + 6, text.indexOf(']', start));
+            let content = text.substring(text.indexOf(']', start) + 1, end);
+            let replacement = '<a href="' + linkPart + '" class="billboard-link" target="_blank" rel="noopener noreferrer">' + content + '</a>';
+            text = text.substring(0, start) + replacement + text.substring(end + 7);
+        }
+        
+
+        while (text.includes('[size=')) {
+            let start = text.indexOf('[size=');
+            let end = text.indexOf('[/size]', start);
+            if (end === -1) break;
+            let sizeValue = text.substring(start + 6, text.indexOf(']', start));
+            let content = text.substring(text.indexOf(']', start) + 1, end);
+            let replacement = '<span style="font-size: ' + sizeValue + 'rem;">' + content + '</span>';
+            text = text.substring(0, start) + replacement + text.substring(end + 7);
+        }
+        
+
+        let sizePresets = ['xs', 'sm', 'md', 'lg', 'xl'];
+        for (let size of sizePresets) {
+            let searchOpen = '[size-' + size + ']';
+            let searchClose = '[/size-' + size + ']';
+            while (text.includes(searchOpen)) {
+                let start = text.indexOf(searchOpen);
+                let end = text.indexOf(searchClose, start);
+                if (end === -1) break;
+                let content = text.substring(start + searchOpen.length, end);
+                let replacement = '<span class="text-' + size + '">' + content + '</span>';
+                text = text.substring(0, start) + replacement + text.substring(end + searchClose.length);
+            }
+        }
+        
+
+        while (text.includes('[rainbow]')) {
+            let start = text.indexOf('[rainbow]');
+            let end = text.indexOf('[/rainbow]', start);
+            if (end === -1) break;
+            let content = text.substring(start + 9, end);
+            let replacement = '<span class="rainbow">' + content + '</span>';
+            text = text.substring(0, start) + replacement + text.substring(end + 10);
+        }
+        
+
+        while (text.includes('[blink]')) {
+            let start = text.indexOf('[blink]');
+            let end = text.indexOf('[/blink]', start);
+            if (end === -1) break;
+            let content = text.substring(start + 7, end);
+            let replacement = '<span class="blink">' + content + '</span>';
+            text = text.substring(0, start) + replacement + text.substring(end + 8);
+        }
+        
+
+        while (text.includes('[glow]')) {
+            let start = text.indexOf('[glow]');
+            let end = text.indexOf('[/glow]', start);
+            if (end === -1) break;
+            let content = text.substring(start + 6, end);
+            let replacement = '<span class="glow">' + content + '</span>';
+            text = text.substring(0, start) + replacement + text.substring(end + 7);
+        }
+        
+
+        let colors = ['gold', 'red', 'green', 'blue', 'pink', 'white', 'gray'];
+        for (let color of colors) {
+            let searchOpen = '[color-' + color + ']';
+            let searchClose = '[/color-' + color + ']';
+            while (text.includes(searchOpen)) {
+                let start = text.indexOf(searchOpen);
+                let end = text.indexOf(searchClose, start);
+                if (end === -1) break;
+                let content = text.substring(start + searchOpen.length, end);
+                let replacement = '<span class="color-' + color + '">' + content + '</span>';
+                text = text.substring(0, start) + replacement + text.substring(end + searchClose.length);
+            }
+        }
+        
+        return text;
+    }
+    
+    async function loadBillboard() {
+        const billboardDiv = document.getElementById('billboardContent');
+        try {
+            const response = await fetch('billboard.txt');
+            if (!response.ok) {
+                billboardDiv.innerHTML = `<div class="billboard-error">No billboard.txt found</div>`;
+                return;
+            }
+            const text = await response.text();
+            parseBillboardText(text, billboardDiv);
+        } catch (error) {
+            console.error('Error loading billboard:', error);
+            billboardDiv.innerHTML = `<div class="billboard-error">Could not load billboard.txt</div>`;
+        }
+    }
+
+    function parseBillboardText(text, container) {
+        const lines = text.split(/\r?\n/);
+        let html = '';
+        let currentSection = '';
+        
+        for (let line of lines) {
+            line = line.trim();
+            if (line === "") continue;
+            
+            if (line.startsWith(">>SECTION:")) {
+                if (currentSection) {
+                    html += `</div>`;
+                }
+                currentSection = line.substring(10).trim();
+                html += `<div class="billboard-section">`;
+                html += `<div class="section-header">${currentSection.toUpperCase()}</div>`;
+                continue;
+            }
+            
+            if (currentSection && line) {
+                if (line.includes("|")) {
+                    const parts = line.split("|");
+                    let name = parts[0].trim();
+                    let amount = parts[1] ? parts[1].trim() : "";
+                    let message = parts[2] ? parts[2].trim() : "";
+                    
+                    name = applyColorTags(name);
+                    amount = applyColorTags(amount);
+                    message = applyColorTags(message);
+                    
+                    html += `<div class="billboard-entry">`;
+                    html += `<span class="entry-name">${name}</span>`;
+                    if (amount) html += ` <span class="entry-amount">${amount}</span>`;
+                    if (message) html += `<div class="entry-message">"${message}"</div>`;
+                    html += `</div>`;
+                } else {
+                    let formattedLine = applyColorTags(line);
+                    html += `<div class="billboard-entry">${formattedLine}</div>`;
+                }
+            }
+        }
+        
+        if (currentSection) {
+            html += `</div>`;
+        }
+        
+        if (html === "") {
+            container.innerHTML = `<div class="billboard-error">No entries found</div>`;
+        } else {
+            container.innerHTML = html;
+        }
+    }
+
+
+    function setupButtons() {
+        const commissionBtn = document.getElementById('commissionBtn');
+        const donateBtn = document.getElementById('donateBtn');
+        
+        // Links are already set in HTML, no need to override
+    }
+
+    function setupAnimatedCursor() {
+        const bezelButtons = document.querySelectorAll('.donate-btn-bezel, .commission-btn-bezel');
+        if (bezelButtons.length === 0) return;
+        
+        let frameIndex = 0;
+        const cursorFrames = [
+            'url("cursor_yesplease1.png") 16 16',
+            'url("cursor_yesplease2.png") 16 16'
+        ];
+        
+        setInterval(() => {
+            frameIndex = (frameIndex + 1) % cursorFrames.length;
+            bezelButtons.forEach(btn => {
+                btn.style.cursor = cursorFrames[frameIndex] + ', pointer';
+            });
+        }, 150); // Change frame every 150ms (adjust for speed)
+    }
+    
+    // Load everything
+    loadGallery();
+    loadBillboard();
+    setupButtons();
+    setupAnimatedCursor();
+</script>
+</body>
+</html>
