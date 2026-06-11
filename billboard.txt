@@ -2,7 +2,11 @@
 [size-xl]☕[/size-xl] [size-md][link=https://ko-fi.com/basilkofi]Ko-Fi[/link][/size-md]<br>[rainbow]Be one of the first 3 to donate and get a special reward![/rainbow]
 
 >>SECTION: Commissioners
-[size-xl]☕[/size-xl][size-md][link=https://ko-fi.com/basilkofi/commissions] Ko-Fi Commissions[/size-md][/link]<br>[rainbow]Be the first commissioner for a special reward![/rainbow]</br>
+[size-lg][link=commission-tracker.html class=plain-link]<img src="img/fromtheheartt_head.png" width="24" height="24" style="vertical-align: -2px;"> Heart [size-xl]🩷[/size-xl][/link][/size-lg]
+[size-xl]☕[/size-xl][size-md][link=https://ko-fi.com/basilkofi/commissions] Ko-Fi Commissions[/link][/size-md]<br>
 
 >>SECTION: Other
-[size-sm] Follow Festivity's [link=https://modrinth.com/resourcepack/festivity]Modrinth page[/link][/size-sm]<br>[link=background-image.png]Background image[/link] [size-sm] by me, Peach & Nui ❤️❤️❤️[/size-sm] </br>
+Follow Festivity's [link=https://modrinth.com/resourcepack/festivity]Modrinth page[/link]
+[link=background-image.png]Background image[/link] [size-sm] by me, Peach & Nui ❤️❤️❤️[/size-sm] 
+[size-sm]Commission page sticker by Heart 🩷[/size-sm]
+

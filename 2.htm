@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Festivity Gallery | Minecraft Resource Pack</title>
+    <!-- Minecraft CSS Framework (Bedrock UI) -->
+    <link rel="stylesheet" href="dist/minecraft-css-framework-v-1.0.0.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+        }
+
+        /* Prevent scrollbar width changes */
+        html {
+            overflow-y: scroll;
+        }
+
+        body {
+            background: #3b3b3d !important;
+            padding: 0;
+            margin: 0;
+        }
+
+        .minecraft-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Header area */
+        .bedrock-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #2d2d2e;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 0 0 2px #5a5b5c, 0 6px 0 #1e1e1f;
+            padding: 1rem 2rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #313233;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #1e1e1f;
+            box-shadow: inset 1px 1px 0 #6c6d6e, inset -1px -1px 0 #1f1f20;
+        }
+
+        .logo-placeholder {
+            width: 56px;
+            height: 56px;
+            background: #8b8b8b;
+            border: 2px solid #0c0c0c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #2b2b2b;
+        }
+
+        .logo-text {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #e0e0e0;
+            text-shadow: 2px 2px 0 #1e1e1f;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* Commission button */
+        .commission-bar {
+            text-align: center;
+            margin: 1rem 0 2rem;
+        }
+
+        .commission-btn {
+            background: #7345e5;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 -4px 0 #4a1cac, inset 2px 2px 0 #a264f2, inset -2px -6px 0 #5d2cc6;
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .commission-btn:active {
+            transform: translateY(2px);
+            box-shadow: inset 0 0 0 #4a1cac, inset 2px 2px 0 #a264f2, inset -2px -2px 0 #5d2cc6;
+        }
+
+        /* Donate button */
+        .donate-btn {
+            background: #c93232;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 -4px 0 #831c1c, inset 2px 2px 0 #e05a5a, inset -2px -6px 0 #a12828;
+            padding: 0.8rem 1.8rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .donate-btn:active {
+            transform: translateY(2px);
+            box-shadow: inset 0 0 0 #831c1c, inset 2px 2px 0 #e05a5a, inset -2px -2px 0 #a12828;
+        }
+
+        /* Category Filter Buttons */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2.5rem;
+            padding: 1.2rem 0;
+            border-top: 3px solid #1e1e1f;
+            border-bottom: 3px solid #1e1e1f;
+            background: #3a3a3c;
+        }
+
+        .cat-btn {
+            background: #c6c6c6;
+            border: 2px solid #131313;
+            box-shadow: inset 1.5px 1.5px 0 #f7f7f7, inset -1.5px -1.5px 0 #656465;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.7rem;
+            color: #2d2d2d;
+            cursor: pointer;
+        }
+
+        .cat-btn.active {
+            background: #218306;
+            color: white;
+            box-shadow: inset 1.5px 1.5px 0 #17cd07, inset -1.5px -1.5px 0 #004e00;
+            border-color: white;
+        }
+
+        .cat-btn:hover {
+            background: #8b8b8b;
+            color: white;
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 2rem 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* Card style - ABSOLUTELY NO HOVER EFFECTS - completely static */
+        .item-card {
+            background: #313233;
+            border: 3px solid #1e1e1f;
+            box-shadow: inset 0 0 0 2px #5a5b5c;
+            padding: 12px 8px 10px 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* DELIBERATELY EMPTY - no hover effects at all */
+
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .item-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border: 2px solid #0f0f0f;
+            background: #1e1e1f;
+            display: block;
+        }
+
+        /* Overlay image */
+        .overlay-img {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border: 2px solid #0f0f0f;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .item-text {
+            margin-top: 12px;
+            font-size: 0.55rem;
+            color: #f0f0f0;
+            background: #1e1e1f;
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid #5a5b5c;
+        }
+
+        .no-match {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 2rem;
+            background: #2d2d2e;
+            border: 3px solid #1e1e1f;
+            color: #ffb7b7;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 640px) {
+            .bedrock-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .image-grid {
+                gap: 1rem;
+            }
+            .commission-btn {
+                font-size: 0.7rem;
+                padding: 0.8rem 1rem;
+            }
+            .donate-btn {
+                font-size: 0.6rem;
+                padding: 0.6rem 1rem;
+            }
+            .overlay-img {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="minecraft-container">
+    <!-- Header -->
+    <div class="bedrock-header">
+        <div class="logo-area">
+            <div class="logo-placeholder">[G]</div>
+            <div class="logo-text">FESTIVITY GALLERY</div>
+        </div>
+        <div class="action-buttons">
+            <!-- REPLACE THE # WITH YOUR DONATE LINK -->
+            <a href="#" class="donate-btn" id="donateBtn">SUPPORT / DONATE</a>
+        </div>
+    </div>
+
+    <!-- Commission button -->
+    <div class="commission-bar">
+        <!-- REPLACE THE # WITH YOUR COMMISSION LINK -->
+        <a href="#" class="commission-btn" id="commissionBtn">+ COMMISSION AN ITEM FOR THIS RESOURCE PACK</a>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="categories" id="categoryFilter">
+        <button class="cat-btn active" data-cat="all">ALL (24)</button>
+        <button class="cat-btn" data-cat="Candy">CANDY</button>
+        <button class="cat-btn" data-cat="Christmas">CHRISTMAS</button>
+        <button class="cat-btn" data-cat="Drinks">DRINKS</button>
+        <button class="cat-btn" data-cat="Fast Foods">FAST FOODS</button>
+        <button class="cat-btn" data-cat="Fruits">FRUITS</button>
+        <button class="cat-btn" data-cat="Others">OTHERS</button>
+    </div>
+
+    <!-- Dynamic Image Grid -->
+    <div id="galleryGrid" class="image-grid"></div>
+</div>
+
+<script>
+    const galleryItems = [
+        // CANDY (2 items) - based on sweet_berries.json
+        { mainImg: "Festivity%20Images/Candy/Candycane.png", caption: "Candycane", category: "Candy", fit: "contain", overlayImg: "Festivity%20Images/Reals/sweet_berries.png" },
+        { mainImg: "Festivity%20Images/Candy/Lollipop.png", caption: "Lollipop", category: "Candy", fit: "contain", overlayImg: "Festivity%20Images/Reals/sweet_berries.png" },
+        
+        // CHRISTMAS (4 items)
+        { mainImg: "Festivity%20Images/Christmas/Christmas%20Hat.png", caption: "Christmas Hat", category: "Christmas", fit: "cover", overlayImg: "Festivity%20Images/Reals/carved_pumpkin.png" },
+        { mainImg: "Festivity%20Images/Christmas/Gift.png", caption: "Gift", category: "Christmas", fit: "cover", overlayImg: "Festivity%20Images/Reals/green_bundle.png" },
+        { mainImg: "Festivity%20Images/Christmas/Gift1.png", caption: "Gift1", category: "Christmas", fit: "cover", overlayImg: "Festivity%20Images/Reals/red_bundle.png" },
+        { mainImg: "Festivity%20Images/Christmas/Gift2.png", caption: "Gift2", category: "Christmas", fit: "cover", overlayImg: "Festivity%20Images/Reals/yellow_bundle.png" },
+        
+        // DRINKS (5 items)
+        { mainImg: "Festivity%20Images/Drinks/Champagne.png", caption: "Champagne", category: "Drinks", fit: "contain", overlayImg: "Festivity%20Images/Reals/milk_bucket.png" },
+        { mainImg: "Festivity%20Images/Drinks/Champagne%20Glass.png", caption: "Champagne Glass", category: "Drinks", fit: "contain", overlayImg: "Festivity%20Images/Reals/bucket.png" },
+        { mainImg: "Festivity%20Images/Drinks/Champagne%20In%20Glass.png", caption: "Champagne In Glass", category: "Drinks", fit: "contain", overlayImg: "Festivity%20Images/Reals/milk_bucket.png" },
+        { mainImg: "Festivity%20Images/Drinks/Eggnog.png", caption: "Eggnog", category: "Drinks", fit: "contain", overlayImg: "Festivity%20Images/Reals/milk_bucket.png" },
+        { mainImg: "Festivity%20Images/Drinks/Hot%20Chocolate.png", caption: "Hot Chocolate", category: "Drinks", fit: "contain", overlayImg: "Festivity%20Images/Reals/milk_bucket.png" },
+        
+        // FAST FOODS (5 items)
+        { mainImg: "Festivity%20Images/Fast%20Foods/Cheese%20Burger.png", caption: "Cheese Burger", category: "Fast Foods", fit: "cover", overlayImg: "Festivity%20Images/Reals/golden_carrot.png" },
+        { mainImg: "Festivity%20Images/Fast%20Foods/Cheese%20Pizza.png", caption: "Cheese Pizza", category: "Fast Foods", fit: "cover", overlayImg: "Festivity%20Images/Reals/golden_carrot.png" },
+        { mainImg: "Festivity%20Images/Fast%20Foods/Fries.png", caption: "Fries", category: "Fast Foods", fit: "cover", overlayImg: "Festivity%20Images/Reals/golden_carrot.png" },
+        { mainImg: "Festivity%20Images/Fast%20Foods/Hot%20Dog.png", caption: "Hot Dog", category: "Fast Foods", fit: "cover", overlayImg: "Festivity%20Images/Reals/golden_carrot.png" },
+        { mainImg: "Festivity%20Images/Fast%20Foods/Pepperoni%20Pizza.png", caption: "Pepperoni Pizza", category: "Fast Foods", fit: "cover", overlayImg: "Festivity%20Images/Reals/golden_carrot.png" },
+        
+        // FRUITS (6 items)
+        { mainImg: "Festivity%20Images/Fruits/Basket.png", caption: "Basket", category: "Fruits", fit: "cover", overlayImg: "Festivity%20Images/Reals/bundle.png" },
+        { mainImg: "Festivity%20Images/Fruits/Green%20Apple.png", caption: "Green Apple", category: "Fruits", fit: "cover", overlayImg: "Festivity%20Images/Reals/apple.png" },
+        { mainImg: "Festivity%20Images/Fruits/Mandarin.png", caption: "Mandarin", category: "Fruits", fit: "cover", overlayImg: "Festivity%20Images/Reals/apple.png" },
+        { mainImg: "Festivity%20Images/Fruits/Orange.png", caption: "Orange", category: "Fruits", fit: "cover", overlayImg: "Festivity%20Images/Reals/apple.png" },
+        { mainImg: "Festivity%20Images/Fruits/Peach.png", caption: "Peach", category: "Fruits", fit: "cover", overlayImg: "Festivity%20Images/Reals/apple.png" },
+        { mainImg: "Festivity%20Images/Fruits/Tomato.png", caption: "Tomato", category: "Fruits", fit: "cover", overlayImg: "Festivity%20Images/Reals/beetroot.png" },
+        
+        // OTHERS (2 items)
+        { mainImg: "Festivity%20Images/Others/Cabbage.png", caption: "Cabbage", category: "Others", fit: "cover", overlayImg: "Festivity%20Images/Reals/potato.png" },
+        { mainImg: "Festivity%20Images/Others/Cheese.png", caption: "Cheese", category: "Others", fit: "cover", overlayImg: "Festivity%20Images/Reals/golden_carrot.png" }
+    ];
+
+    let currentCategory = "all";
+
+    function renderGallery() {
+        const gridContainer = document.getElementById('galleryGrid');
+        const filteredItems = currentCategory === "all" 
+            ? galleryItems 
+            : galleryItems.filter(item => item.category === currentCategory);
+        
+        if (filteredItems.length === 0) {
+            gridContainer.innerHTML = `<div class="no-match">NO ITEMS IN THIS CATEGORY</div>`;
+            return;
+        }
+
+        let html = '';
+        filteredItems.forEach(item => {
+            const fitStyle = item.fit === "contain" ? "object-fit: contain;" : "object-fit: cover;";
+            html += `
+                <div class="item-card">
+                    <div class="image-wrapper">
+                        <img class="item-img" src="${item.mainImg}" alt="${item.caption}" loading="lazy" style="${fitStyle} background: #1e1e1f;" onerror="this.src='https://via.placeholder.com/150/313233/ffffff?text=NO+IMG'">
+                        <img class="overlay-img" src="${item.overlayImg}" alt="real item" onerror="this.style.display='none'">
+                    </div>
+                    <div class="item-text">${item.caption}</div>
+                </div>
+            `;
+        });
+        gridContainer.innerHTML = html;
+        updateCategoryCounts();
+    }
+
+    function updateCategoryCounts() {
+        const catButtons = document.querySelectorAll('.cat-btn');
+        catButtons.forEach(btn => {
+            const catValue = btn.getAttribute('data-cat');
+            if (catValue === "all") {
+                btn.innerHTML = `ALL (${galleryItems.length})`;
+                return;
+            }
+            const count = galleryItems.filter(i => i.category === catValue).length;
+            btn.innerHTML = `${catValue.toUpperCase()} (${count})`;
+        });
+    }
+
+    function initCategoryEvents() {
+        const buttons = document.querySelectorAll('.cat-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.getAttribute('data-cat');
+                renderGallery();
+            });
+        });
+    }
+
+    initCategoryEvents();
+    renderGallery();
+</script>
+</body>
+</html>

@@ -22,6 +22,7 @@ Gift2.png|yellow_bundle.png|Gift
 >>FIT: contain
 Candycane.png|sweet_berries.png
 Lollipop.png|sweet_berries.png
+Honey Stick.png|golden_carrot.png
 
 >>CATEGORY: Drinks
 >>PATH: Festivity Images/Drinks/
@@ -36,6 +37,7 @@ Empty Tea Cup.png|bucket.png
 Champagne.png|milk_bucket.png
 Champagne Glass.png|bucket.png
 Champagne In Glass.png|milk_bucket.png
+Honey Jar.png|honey_bottle.png
 
 >>CATEGORY: Fruits
 >>PATH: Festivity Images/Fruits/
@@ -52,3 +54,4 @@ Basket.png|bundle.png
 >>FIT: cover
 Cabbage.png|potato.png
 Cheese.png|golden_carrot.png
+Honey Jar.png|glass_bottle.png

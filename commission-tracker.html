@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=1.0, user-scalable=yes">
+    <title>Commissioners | Festivity Resource Pack</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+        }
+
+        html {
+            overflow-y: scroll;
+        }
+
+        .background-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        body {
+            background: transparent !important;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .minecraft-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header back button */
+        .commission-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            background: #8e2e55;
+            border: 3px solid #5c1d38;
+            box-shadow: inset 0 0 0 2px #b84d7a, 0 6px 0 #4a162d;
+            padding: 1rem 2rem;
+        }
+
+        .commission-header h1 {
+            font-size: 1rem;
+            color: #ededed;
+            text-shadow: 2px 2px 0 #1e1e1f;
+            margin: 0;
+        }
+
+        .back-link {
+            background: #a33e66;
+            border: 2px solid #b84d7a;
+            border-radius: 8px;
+            box-shadow: 
+                inset 0 -4px 0 #5c1d38,
+                inset 0 1px 0 #c95d88,
+                0 2px 4px rgba(0,0,0,0.3);
+            padding: 0.7rem 2rem;
+            color: #ededed;
+            text-decoration: none;
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            font-weight: bold;
+            transition: 0.05s linear;
+        }
+
+        .back-link:active {
+            transform: translateY(2px);
+            box-shadow: 
+                inset 0 -2px 0 #5c1d38,
+                inset 0 1px 0 #c95d88,
+                0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .commissioners-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .commission-card {
+            background: #422144;
+            border: 6px solid #775c73;
+            box-shadow: inset 0 0 0 2px #9e7998, 0 6px 0 #5e455a;
+            padding: 1.5rem;
+            transition: 0.1s ease;
+        }
+
+        .commission-card-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #a3829a;
+        }
+
+        .commissioner-icon {
+            width: 48px;
+            height: 48px;
+            background: #1e1e1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            overflow: hidden;
+        }
+
+        .commissioner-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .commissioner-info h3 {
+            font-size: 1rem;
+            color: #ffd966;
+            margin-bottom: 0.3rem;
+        }
+
+        .commissioner-info .date {
+            font-size: 0.65rem;
+            color: #c19cbb;
+        }
+
+        .commission-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .commission-item {
+            width: 165;
+            height: 165;
+            background: rgba(143, 46, 85, 0.25);
+            border: 1px solid rgba(192, 79, 197, 0.5);
+            padding: 0.8rem;
+            text-align: center;
+        }
+
+        .commission-item img {
+            width: 164;
+            height: 164;
+            object-fit: cover;
+            border: 2px solid rgba(184, 77, 122, 0.25);
+            margin-bottom: 0.5rem;
+        }
+
+        .commission-item-name {
+            font-size: 0.65rem;
+            color: #ffb347;
+        }
+
+        .commission-status {
+            font-size: 0.4rem;
+            color: #7aff87;
+            margin-top: 0.3rem;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            background: #2d2d2e;
+            border: 3px solid #1e1e1f;
+            color: #ffb7b7;
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 640px) {
+            .commission-details {
+                flex-direction: column;
+            }
+            .commission-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+        /* Sticker */
+        .commission-header {
+            position: relative;
+        }
+        
+        /*.sticker {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 140px;
+            height: 138px;
+            transform: rotate(15deg);
+            pointer-events: none;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+            image-rendering: pixelated;*/
+        }
+        .commission-card {
+            position: relative;
+            background: #422144;
+            border: 6px solid #775c73;
+            box-shadow: inset 0 0 0 2px #9e7998, 0 6px 0 #5e455a;
+            padding: 1.5rem;
+            transition: 0.1s ease;
+        }
+
+        
+        body {
+            cursor: url('cursor.png') 10 16, auto;
+        }
+
+        a, button, .back-link {
+            cursor: url('cursor-pointer.png') 16 16, pointer;
+        }
+        .card-sticker-wrapper {
+            position: absolute;
+            top: -15px;
+            right: -35px;
+            z-index: 10;
+        }
+        
+        .card-sticker {
+            width: 140px;
+            height: 138px;
+            transform: rotate(15deg);
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+            image-rendering: pixelated;
+            cursor: url('cursor-Heart.png') 16 16, pointer;
+            display: block;
+        }
+        
+
+
+        .floating-tooltip {
+            display: none;
+            position: fixed;
+            background: rgba(142, 46, 85, 0.85);
+            border: 1px solid #5c1d38;
+            box-shadow: inset 0 0 0 2px rgba(184, 77, 122, 0.7), 0 2px 0 #4a162d;
+            color: #ffd966;
+            font-size: 0.65rem;
+            padding: 0.3rem 0.3rem;
+            white-space: nowrap;
+            font-family: 'Press Start 2P', monospace;
+            text-align: center;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        
+
+    </style>
+</head>
+<body>
+<img src="background-image.png" class="background-fixed">
+<div class="minecraft-container">
+
+    <div class="commission-header">
+        <!-- <img src="img/HeartSticker_by-Heart.png" class="sticker" alt="sticker"> -->
+        <a href="index.html" class="back-link">< BACK TO GALLERY</a>
+        <h1>₊ ⊹₊ ⊹ COMMISSION TRACKER ⊹₊ ⊹ ₊</h1>
+        <div style="width: 100px;"></div>
+    </div>
+
+    <div id="commissionersGrid" class="commissioners-grid">
+        <div class="no-data">LOADING COMMISSIONERS...</div>
+    </div>
+
+</div>
+
+<script>
+    // COMMISSIONERS DATA
+    // Format for commissioners.txt:
+    // >>COMMISSIONER: Username
+    // >>ICON: path/to/icon.png
+    // >>DATE: 2024-01-15
+    // >>ITEM: item_name.png|Item Display Name
+    // >>ITEM: another_item.png|Another Name
+    // >>END
+
+
+    let commissioners = [];
+
+    async function loadCommissioners() {
+        const gridContainer = document.getElementById('commissionersGrid');
+        
+        try {
+            const response = await fetch('commissioners.txt');
+            if (!response.ok) {
+                // If no file exists, load default data
+                loadDefaultCommissioners();
+                return;
+            }
+            const text = await response.text();
+            parseCommissionersText(text);
+        } catch (error) {
+            console.error('Error loading commissioners:', error);
+            loadDefaultCommissioners();
+        }
+        
+        renderCommissioners();
+    }
+
+    function parseCommissionersText(text) {
+        const lines = text.split(/\r?\n/);
+        
+        let currentCommissioner = null;
+        commissioners = [];
+        
+        for (let line of lines) {
+            line = line.trim();
+            if (line === "") continue;
+            
+            if (line.startsWith(">>COMMISSIONER:")) {
+                if (currentCommissioner) {
+                    commissioners.push(currentCommissioner);
+                }
+                currentCommissioner = {
+                    name: line.substring(15).trim(),
+                    icon: "",
+                    date: "",
+                    sticker: "",
+                    tooltip: "",
+                    items: []
+                };
+                continue;
+            }
+            
+            if (currentCommissioner && line.startsWith(">>STICKER:")) {
+                currentCommissioner.sticker = line.substring(10).trim();
+                continue;
+            }
+            
+            if (currentCommissioner && line.startsWith(">>ICON:")) {
+                currentCommissioner.icon = line.substring(7).trim();
+                continue;
+            }
+            
+            if (currentCommissioner && line.startsWith(">>DATE:")) {
+                currentCommissioner.date = line.substring(7).trim();
+                continue;
+            }
+            
+            if (currentCommissioner && line.startsWith(">>ITEM:")) {
+                const itemData = line.substring(7).trim();
+                const parts = itemData.split("|");
+                currentCommissioner.items.push({
+                    image: parts[0].trim(),
+                    name: parts[1] ? parts[1].trim() : parts[0].replace(/\.png$/i, "").replace(/\.jpg$/i, "")
+                });
+                continue;
+            }
+            
+            if (currentCommissioner && line.startsWith(">>TOOLTIP:")) {
+                currentCommissioner.tooltip = line.substring(10).trim();
+                continue;
+            }
+            
+            if (currentCommissioner && line.startsWith(">>END")) {
+                // Just continue to next commissioner
+                continue;
+            }
+        }
+        
+        // Push the last commissioner
+        if (currentCommissioner) {
+            commissioners.push(currentCommissioner);
+        }
+    }
+
+
+    function renderCommissioners() {
+        const gridContainer = document.getElementById('commissionersGrid');
+        
+        if (commissioners.length === 0) {
+            gridContainer.innerHTML = `<div class="no-data">NO COMMISSIONERS YET</div>`;
+            return;
+        }
+        
+        let html = '';
+        for (let commissioner of commissioners) {
+            // Format the date nicely
+            let formattedDate = commissioner.date;
+            if (formattedDate && formattedDate.includes('-')) {
+                const parts = formattedDate.split('-');
+                formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+            }
+            
+            html += `
+                <div class="commission-card" style="position: relative;">
+                    ${commissioner.sticker ? `<div class="card-sticker-wrapper" data-tooltip="${escapeHtml(commissioner.tooltip || '✨ Special sticker ✨')}"><img src="${commissioner.sticker}" class="card-sticker" alt="sticker"></div>` : ''}
+                    <div class="commission-card-header">
+                        <div class="commissioner-icon">
+                            ${commissioner.icon ? `<img src="${commissioner.icon}" alt="icon">` : '<span>👤</span>'}
+                        </div>
+                        <div class="commissioner-info">
+                            <h3>${escapeHtml(commissioner.name)}</h3>
+                            <div class="date">Commissioned: ${formattedDate || 'Date unknown'}</div>
+                        </div>
+                    </div>
+                    <div class="commission-details">
+                        ${renderCommissionItems(commissioner.items)}
+                    </div>
+                </div>
+            `;
+        }
+        
+        gridContainer.innerHTML = html;
+        setupFloatingTooltip();
+    }
+    
+    function renderCommissionItems(items) {
+        if (!items || items.length === 0) {
+            return `<div class="commission-item">No items specified</div>`;
+        }
+        
+        let itemsHtml = '';
+        for (let item of items) {
+            // Determine fit based on item type (simple logic)
+            let fitStyle = "cover";
+            if (item.name.toLowerCase().includes('champagne') || item.name.toLowerCase().includes('drink')) {
+                fitStyle = "contain";
+            }
+            
+            itemsHtml += `
+                <div class="commission-item">
+                    <img src="${item.image}" alt="${item.name}" style="object-fit: ${fitStyle};" onerror="this.src='https://via.placeholder.com/64/313233/ffffff?text=NO+IMG'">
+                    <div class="commission-item-name">${escapeHtml(item.name)}</div>
+                </div>
+            `;
+        }
+        return itemsHtml;
+    }
+    
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    function setupFloatingTooltip() {
+        const stickers = document.querySelectorAll('.card-sticker-wrapper');
+        
+        stickers.forEach(wrapper => {
+            const tooltipText = wrapper.getAttribute('data-tooltip');
+            if (!tooltipText) return;
+            
+            // Create tooltip element
+            const tooltip = document.createElement('div');
+            tooltip.className = 'floating-tooltip';
+            tooltip.textContent = tooltipText;
+            document.body.appendChild(tooltip);
+            
+            let targetX = 0, targetY = 0;
+            let currentX = 0, currentY = 0;
+            let animationFrame = null;
+            let isVisible = false;
+            
+            function animate() {
+                if (!isVisible) return;
+                
+                // Smooth following with lag
+                currentX += (targetX - currentX) * 0.2;
+                currentY += (targetY - currentY) * 0.2;
+                
+                tooltip.style.left = currentX + 'px';
+                tooltip.style.top = currentY + 'px';
+                
+                animationFrame = requestAnimationFrame(animate);
+            }
+            
+            wrapper.addEventListener('mouseenter', (e) => {
+                targetX = e.clientX + 20;
+                targetY = e.clientY + 20;
+                currentX = targetX;
+                currentY = targetY;
+                tooltip.style.display = 'block';
+                isVisible = true;
+                animationFrame = requestAnimationFrame(animate);
+            });
+            
+            wrapper.addEventListener('mousemove', (e) => {
+                targetX = e.clientX + 20;
+                targetY = e.clientY + 20;
+            });
+            
+            wrapper.addEventListener('mouseleave', () => {
+                isVisible = false;
+                if (animationFrame) {
+                    cancelAnimationFrame(animationFrame);
+                    animationFrame = null;
+                }
+                tooltip.style.display = 'none';
+            });
+        });
+    }
+    
+    loadCommissioners();
+    function setupAnimatedCursor() {
+        const backButton = document.querySelector('.back-link');
+        if (!backButton) return;
+        
+        let frameIndex = 0;
+        const cursorFrames = [
+            'url("cursor_yesplease1.png") 16 16',
+            'url("cursor_yesplease2.png") 16 16'
+        ];
+        
+        setInterval(() => {
+            frameIndex = (frameIndex + 1) % cursorFrames.length;
+            if (backButton) {
+                backButton.style.cursor = cursorFrames[frameIndex] + ', pointer';
+            }
+        }, 150);
+    }
+</script>
+</body>
+</html>
