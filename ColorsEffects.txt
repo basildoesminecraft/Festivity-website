@@ -1,0 +1,16 @@
+// Available color tags:
+// [color-gold]text[/color-gold]  ->  #ffd966 (warm gold/yellow)
+// [color-red]text[/color-red]    ->  #ff7777 (soft red)
+// [color-green]text[/color-green] -> #7aff87 (bright green)
+// [color-blue]text[/color-blue]  ->  #77aaff (light blue)
+// [color-pink]text[/color-pink]  ->  #ff99cc (soft pink)
+// [color-white]text[/color-white] -> #ffffff (white)
+// [color-gray]text[/color-gray]  ->  #aaaaaa (light gray)
+//
+// Other effects:
+// [rainbow]text[/rainbow]  -> rainbow animation
+// [blink]text[/blink]      -> blinking text
+// [glow]text[/glow]        -> pink neon glow
+// [size=0.8]text[/size]    -> custom font size (0.5 to 1.5)
+// [size-lg]text[/size-lg]  -> preset sizes (xs, sm, md, lg, xl)
+// [link=URL]text[/link]    -> clickable link

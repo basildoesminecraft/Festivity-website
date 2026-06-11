@@ -130,7 +130,8 @@
             border-radius: 45px 45px 0 0;
             z-index: -1;
         }
-        
+
+
 
         .tv-box::before {
             content: "";
@@ -614,7 +615,7 @@
             }
             .commission-btn {
                 font-size: 0.7rem;
-                padding: 0.8rem 1rem;
+                padding: 0.8rem 1rem;Heart
             }
             .donate-btn {
                 font-size: 0.6rem;
@@ -790,36 +791,131 @@
         .close-modal:hover {
             background: #a12828;
         }
+        /* Tutorial box styling */
+        .tutorial-box {
+            margin-top: 1.5rem;
+        }
+        
+        .tutorial-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .step {
+            background: #1e1e1f;
+            border: 1px solid #5a5b5c;
+            padding: 0.4rem;
+            font-size: 0.5rem;
+            color: #e0e0e0;
+            border-radius: 4px;
+        }
+        
+        .video-link {
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        
+        .video-link .social-link {
+            display: block;
+            background: transparent;
+            border-color: #transparent;
+            color: #aaaaaa;
+            font-weight: normal;
+            font-size: 0.65rem;
+        }
+        
+        .video-link .social-link:hover {
+            background: #2a641c;
+            color: white;
+            border-color: #ffd966;
+        }
+        .left-column {
+            flex: 0 0 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 0rem;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .billboard {
+            /* Remove position: sticky from here */
+            position: relative;
+        }
+
+        .top-bezel-image {
+            position: absolute;
+            top: -95px;
+            left: 20px;
+            z-index: 25;
+            cursor: pointer;
+        }
+        
+        .top-bezel-image img {
+            width: 256px;
+            height: 23px;
+            image-rendering: pixelated;
+            transition: transform 0.1s ease;
+        }
+        
+        .top-bezel-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .billboard-link.plain-link {
+            color: #fcfcfc;
+            text-decoration: none;
+            border-bottom: none;
+        }
+        
+        .billboard-link.plain-link:hover {
+            color: #f20262;
+        }
     </style>
 </head>
 <body>
 <img src="background-image.png" class="background-fixed">
 <div class="minecraft-container">
-
     <div class="two-columns">
-        
 
-        <div class="billboard" id="billboard">
-            <div class="billboard-title">★ SUPPORTERS ★</div>
-            <div style="text-align: center; font-size: 0.67rem; color: #aaaaaa; margin-bottom: 10px;">Updated by hand every week</div>
-            <div id="billboardContent">
-                <div class="billboard-loading">LOADING...</div>
+        <!-- LEFT COLUMN -->
+        <div class="left-column">
+            <!-- SUPPORTERS BILLBOARD -->
+            <div class="billboard" id="billboard">
+                <div class="billboard-title">❤️ SUPPORTERS ❤️</div>
+                <div style="text-align: center; font-size: 0.67rem; color: #aaaaaa; margin-bottom: 10px;">Updated by hand every week</div>
+                <div id="billboardContent">
+                    <div class="billboard-loading">LOADING...</div>
+                </div>
+            </div>
+
+            <!-- TUTORIAL BOX -->
+            <div class="billboard tutorial-box">
+                <div class="billboard-title">📖 user guide 📖</div>
+                <div class="tutorial-steps">
+                    <div class="step">1. Download the resource pack from the Festivity Modrinth page.</div>
+                    <div class="step">2. Open Minecraft. Go to Options > Resource Packs. Click "Open Pack Folder". Drag in the .zip file into that folder.</div>
+                    <div class="step">3. Go back in-game. Select the resource pack and click the play icon. Click "Done" and enjoy!</div>
+                    <div class="step">4. To obtain any custom item: look for the small Minecraft item on the bottom left side of the custom item. Get that item in-game. Use an anvil to rename that item to the custom item.</div>
+                </div>
+                <div class="video-link">
+                    <a href="https://youtu.be/UZ5oMhkdUrE" target="_blank" class="social-link">> Watch Video Tutorial</a>
+                </div>
             </div>
         </div>
-
 
         <div class="gallery-area">
             <div class="tv-box">
                 <div class="top-bezel-extend"></div>
                 <div class="screen-glare"></div>
             
- 
                 <div class="top-bezel-buttons">
                     <a href="https://ko-fi.com/basilkofi" target="_blank" class="donate-btn-bezel" id="donateBtn">SUPPORT / DONATE</a>
                     <a href="https://ko-fi.com/basilkofi/commissions" target="_blank" class="commission-btn-bezel" id="commissionBtn">+ COMMISSION FOR THIS RESOURCE PACK</a>
                 </div>
                 
-
                 <div class="bedrock-header">
                     <div class="logo-area">
                         <img src="Festivity.png" class="logo-placeholder" style="width: 75px; height: 75px; object-fit: contain;">
@@ -827,9 +923,7 @@
                     </div>
                 </div>
 
-
                 <div class="categories" id="categoryFilter"></div>
-
 
                 <div id="galleryGrid" class="image-grid">
                     <div class="loading">LOADING GALLERY...</div>
@@ -988,9 +1082,19 @@
             let start = text.indexOf('[link=');
             let end = text.indexOf('[/link]', start);
             if (end === -1) break;
-            let linkPart = text.substring(start + 6, text.indexOf(']', start));
+            let linkTag = text.substring(start + 6, text.indexOf(']', start));
+            let linkParts = linkTag.split(' ');
+            let linkUrl = linkParts[0].trim();
+            let linkClass = '';
+            for (let i = 1; i < linkParts.length; i++) {
+                if (linkParts[i].startsWith('class=')) {
+                    linkClass = linkParts[i].substring(6).trim();
+                    break;
+                }
+            }
             let content = text.substring(text.indexOf(']', start) + 1, end);
-            let replacement = '<a href="' + linkPart + '" class="billboard-link" target="_blank" rel="noopener noreferrer">' + content + '</a>';
+            let classAttr = linkClass ? ' class="billboard-link ' + linkClass + '"' : ' class="billboard-link"';
+            let replacement = '<a href="' + linkUrl + '"' + classAttr + ' target="_blank" rel="noopener noreferrer">' + content + '</a>';
             text = text.substring(0, start) + replacement + text.substring(end + 7);
         }
         
