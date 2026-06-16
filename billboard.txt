@@ -1,4 +1,5 @@
 >>SECTION: Donators
+[size-lg]<img src="img/fromtheheartt_head.png" width="24" height="24" style="vertical-align: -2px;"> Heart [size-xl]🩷[/size-xl] [/size-lg]
 [size-xl]☕[/size-xl] [size-md][link=https://ko-fi.com/basilkofi]Ko-Fi[/link][/size-md]<br>[rainbow]Be one of the first 3 to donate and get a special reward![/rainbow]
 
 >>SECTION: Commissioners
